@@ -19,7 +19,7 @@ public class Inventory {
     public static final HashMap<ToolType, ToolPolicy> policy = new HashMap<>() {{
        put(ToolType.Ladder, new ToolPolicy(1.99, true, true, false));
        put(ToolType.Chainsaw, new ToolPolicy(1.49, true, false, true));
-       put(ToolType.Jackhammer, new ToolPolicy(1.99, true, false, false));
+       put(ToolType.Jackhammer, new ToolPolicy(2.99, true, false, false));
     }};
 
     // Because the types of tools seems pretty static I decided to

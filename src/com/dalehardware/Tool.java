@@ -9,7 +9,7 @@ public class Tool {
 
     // Unique identifier for a tool instance.
     private String code;
-    // The type of tool. The thype also specifies the daily rental charge,
+    // The type of tool. The type also specifies the daily rental charge,
     // and the days for which the daily rental charge applies.
     private Inventory.ToolType type;
     // The brand of the ladder, chain saw, or jackhammer.
