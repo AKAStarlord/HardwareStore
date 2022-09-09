@@ -79,7 +79,7 @@ public class Transaction {
                     + rentalDays);
         }
 
-        Tool tool = Inventory.list.get(toolCode);
+        Tool tool = Inventory.tools.get(toolCode);
         ToolPolicy policy = Inventory.policy.get(tool.getType());
 
         LocalDate dueDate = checkoutDate.plusDays(rentalDays - 1); // Minus one to include day-of.
@@ -102,9 +102,12 @@ public class Transaction {
         }
 
         // Round all decimals to two digits for currency.
-        double preDiscountCharge = chargeDays * policy.getDailyCharge();
-        double discountAmount = round(preDiscountCharge * (discountPercent / 100));
-        double finalCharge = round(preDiscountCharge - discountAmount);
+        // It isn't strictly necessary to round for the preDiscountCharge for the given daily charges,
+        // but I added it in just in case of some theoretical future Daily Charge that might have more
+        // than two decimals, similar to gasoline.
+        double preDiscountCharge = roundToTwoDecimals(chargeDays * policy.getDailyCharge());
+        double discountAmount = roundToTwoDecimals(preDiscountCharge * (discountPercent / 100));
+        double finalCharge = roundToTwoDecimals(preDiscountCharge - discountAmount);
 
         return new RentalAgreement(
                 tool.getCode(),
@@ -126,7 +129,7 @@ public class Transaction {
      * @param unrounded The initial un-rounded value.
      * @return The new value rounded to the nearest two decimal places.
      */
-    private double round(double unrounded) {
+    private double roundToTwoDecimals(double unrounded) {
         BigDecimal bd = new BigDecimal(unrounded);
         BigDecimal rounded = bd.setScale(2, RoundingMode.HALF_UP);
         return rounded.doubleValue();

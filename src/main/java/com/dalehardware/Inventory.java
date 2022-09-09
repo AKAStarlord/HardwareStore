@@ -14,7 +14,7 @@ public class Inventory {
     // I kept the tool code as a part of the Tool object, for "future-proofing" in case
     // of a theoretical scenario where someone would need a Tool object without already
     // knowing what the code was.
-    public static final HashMap<String, Tool> list = new HashMap<>() {{
+    public static final HashMap<String, Tool> tools = new HashMap<>() {{
         put("CHNS", new Tool("CHNS", ToolType.Chainsaw, Brand.Stihl));
         put("LADW", new Tool("LADW", ToolType.Ladder, Brand.Werner));
         put("JAKD", new Tool("JAKD", ToolType.Jackhammer, Brand.DeWalt));

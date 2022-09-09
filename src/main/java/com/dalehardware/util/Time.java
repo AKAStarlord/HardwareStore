@@ -81,9 +81,11 @@ public class Time {
      */
     public static boolean isIndependenceDay(LocalDate date) {
         LocalDate independenceDay = LocalDate.of(date.getYear(), 7, 4);
+        // If July 4 is on a Saturday we count the previous friday as Independence Day.
         if (independenceDay.getDayOfWeek() == DayOfWeek.SATURDAY) {
             independenceDay = independenceDay.minusDays(1);
         }
+        // If July 4 is on a Sunday we count the following Monday as Independence Day.
         if (independenceDay.getDayOfWeek() == DayOfWeek.SUNDAY) {
             independenceDay = independenceDay.plusDays(1);
         }
