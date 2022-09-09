@@ -1,5 +1,8 @@
 package com.dalehardware;
 
+/**
+ * Simple class to hold the state of a given tools time/cost policies.
+ */
 public class ToolPolicy {
 
     private double dailyCharge;

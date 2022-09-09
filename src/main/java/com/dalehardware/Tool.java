@@ -1,5 +1,8 @@
 package com.dalehardware;
 
+/**
+ * A simple class to hold the state of a given tool.
+ */
 public class Tool {
     public Tool(String code, Inventory.ToolType type, Inventory.Brand brand) {
         this.code = code;

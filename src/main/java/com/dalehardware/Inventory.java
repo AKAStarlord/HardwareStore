@@ -2,12 +2,18 @@ package com.dalehardware;
 
 import java.util.HashMap;
 
+/**
+ * Instead of an actual database (outside the scope of this demo) the data and relationships between tools and their
+ * pricing and holiday/weekend/weekday policy are held here.
+ */
 public class Inventory {
 
     // Based on the design doc it didn't seem like the contents of tool inventory would
     // ever change, so I just made a static map to hold them in. Additionally using a
     // map means that the IDs are unique.
-    // TODO - do I really want to have the code even if it is the same as the key?
+    // I kept the tool code as a part of the Tool object, for "future-proofing" in case
+    // of a theoretical scenario where someone would need a Tool object without already
+    // knowing what the code was.
     public static final HashMap<String, Tool> list = new HashMap<>() {{
         put("CHNS", new Tool("CHNS", ToolType.Chainsaw, Brand.Stihl));
         put("LADW", new Tool("LADW", ToolType.Ladder, Brand.Werner));
@@ -32,7 +38,7 @@ public class Inventory {
 
         public final String label;
 
-        private ToolType(String label) {
+        ToolType(String label) {
             this.label = label;
         }
     }
@@ -46,7 +52,7 @@ public class Inventory {
 
         public final String label;
 
-        private Brand(String label) {
+        Brand(String label) {
             this.label = label;
         }
     }

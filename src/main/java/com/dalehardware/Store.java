@@ -7,6 +7,9 @@ import java.time.format.DateTimeParseException;
 
 public class Store {
 
+    /**
+     * Not really required by the design document, but I put in a little terminal interface just for fun.
+     */
     public static void main(String []args) {
         String input = "";
 
@@ -18,7 +21,13 @@ public class Store {
             try {
                 System.out.println("Tool Code: ");
                 String toolCode = input = reader.readLine();
-                System.out.println("Checkout Date: ");
+
+                // Break out early.
+                if (input.equals("EXIT")) {
+                    break;
+                }
+
+                System.out.println("Checkout Date (dd/mm/yy): ");
                 String checkoutDate = reader.readLine();
                 System.out.println("Number of Rental Days: ");
                 String rentalDays = reader.readLine();
@@ -27,7 +36,8 @@ public class Store {
 
                 // Process user input.
                 Transaction transaction = new Transaction(toolCode, checkoutDate, rentalDays, discount);
-                transaction.process();
+                RentalAgreement agreement = transaction.checkOut();
+                System.out.println(agreement.toString());
 
             } catch (IOException e) {
                 // If there is an exception for some reason here, not much really
@@ -37,6 +47,8 @@ public class Store {
                 e.printStackTrace();
             } catch (DateTimeParseException e) {
                 System.out.println("Bad Checkout Date entered!");
+            } catch (IllegalArgumentException e) {
+                System.out.println("Bad percent entered!");
             }
         }
     }

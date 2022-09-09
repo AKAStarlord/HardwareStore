@@ -4,6 +4,9 @@ import java.text.NumberFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
+/**
+ * RentalAgreement holds and formats all the data relevant to completing a transaction with a customer.
+ */
 public class RentalAgreement {
 
     private String toolCode;
@@ -123,20 +126,25 @@ public class RentalAgreement {
         this.finalCharge = finalCharge;
     }
 
-    // Overriding the default toString to print as described
-    // in the design document.
+    /**
+     * Overriding the default toString to print as described
+     * in the design document.
+     * @return Returns a nicely formatted string for printing.
+     */
     @Override
     public String toString() {
-        return  "Tool Code: " + toolCode +
+        return  "Rental Agreement: " +
+                "\nTool Code: " + toolCode +
                 "\nTool Type: " + toolType +
                 "\nTool Brand: " + toolBrand +
                 "\nRental Days: " + rentalDays +
-                "\nCheck Out Date"  + checkOutDate.format(DateTimeFormatter.ofPattern("MM/dd/yy")) +
+                "\nCheck Out Date: "  + checkOutDate.format(DateTimeFormatter.ofPattern("MM/dd/yy")) +
                 "\nDue Date: " + dueDate.format(DateTimeFormatter.ofPattern("MM/dd/yy")) +
-                "\ncharge Days: " + chargeDays +
+                "\nCharge Days: " + chargeDays +
                 "\nPre-discount Charge: " + NumberFormat.getCurrencyInstance().format(preDiscountCharge) +
-                "\nDiscount Percent: " + discountPercent + "%" +
+                "\nDiscount Percent: " + String.format("%.0f%%", discountPercent) +
                 "\nDiscount Amount: " + NumberFormat.getCurrencyInstance().format(discountAmount) +
-                "\nFinal Charge: " + NumberFormat.getCurrencyInstance().format(finalCharge);
+                "\nFinal Charge: " + NumberFormat.getCurrencyInstance().format(finalCharge) +
+                "\n\n\n\n";
     }
 }
