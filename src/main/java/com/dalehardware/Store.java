@@ -27,7 +27,7 @@ public class Store {
                     break;
                 }
 
-                System.out.println("Checkout Date (dd/mm/yy): ");
+                System.out.println("Checkout Date (mm/dd/yy): ");
                 String checkoutDate = reader.readLine();
                 System.out.println("Number of Rental Days: ");
                 String rentalDays = reader.readLine();
@@ -46,9 +46,11 @@ public class Store {
                 System.out.println("Bad input!");
                 e.printStackTrace();
             } catch (DateTimeParseException e) {
-                System.out.println("Bad Checkout Date entered!");
+                System.out.println("Bad Checkout Date entered! Please use mm/dd/yy format.");
             } catch (IllegalArgumentException e) {
-                System.out.println("Bad percent entered!");
+                System.out.println("Bad percent entered! Please enter a value between 0 and 100.");
+            } catch (IllegalStateException e) {
+                System.out.println(e.getMessage());
             }
         }
     }

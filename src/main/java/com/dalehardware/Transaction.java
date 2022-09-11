@@ -79,6 +79,10 @@ public class Transaction {
                     + rentalDays);
         }
 
+        if (Inventory.tools.get(toolCode) == null){
+            throw new IllegalStateException("Invalid Tool Code provided. Did you enter the correct code?");
+        }
+
         Tool tool = Inventory.tools.get(toolCode);
         ToolPolicy policy = Inventory.policy.get(tool.getType());
 
